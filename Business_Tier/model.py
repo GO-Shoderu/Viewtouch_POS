@@ -6,8 +6,7 @@ data_access_dir = os.path.join(current_dir, '..', 'Data_Access_Tier')
 # Add the data_access_dir to the Python path
 sys.path.insert(0, data_access_dir)
 
-from Data_Access_Tier.config import db, app
-
+from Data_Access_Tier.config import db
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -59,11 +58,3 @@ class Price(db.Model):
 
     def __repr__(self):
         return f'<Price Id: {self.id}, item_num: {self.item_num}, amount: {self.amount}>'
-
-
-
-
-
-
-# with app.app_context():
-#     db.create_all()

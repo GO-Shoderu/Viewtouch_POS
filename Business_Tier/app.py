@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request
 # from Business_Tier.model import User, Order, Admin
+from flask_marshmallow import Marshmallow
+from flask_cors import CORS
 
 import os, sys
 
@@ -9,16 +11,62 @@ business_dir = os.path.join(current_dir, '..')
 # Add the business_dir to the Python path
 sys.path.insert(0, business_dir)
 
-from Business_Tier.model import User
+from Business_Tier.model import User, Order, Booking, Item, Price
+from Data_Access_Tier.config import initialize_app, db
 
 app = Flask(__name__)
+CORS(app)
+# db.init_app(app)
+initialize_app(app)
+
+ma = Marshmallow(app)
+
+class UserSchema(ma.Schema):
+    class Meta:
+        fields = ('id', 'username', 'password', 'category')
+
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)
+
+@app.route('/login', methods=['POST'])
+def login():
+    # Retrieve the username and password from the request data
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+
+    user = User.query.filter_by(username=username, password=password).first()
+
+    if user:
+        # User exists, return a successful response
+        response = {
+            'isLoggedIn': True,
+            'category': user.category,
+            'userId': user.id
+        }
+    else:
+        # User does not exist, return an error response
+        response = {
+            'isLoggedIn': False,
+            'error': 'Invalid username or password'
+        }
+
+    return jsonify(response)
 
 # API routes and logic
-@app.route('/api/users', methods=['GET'])
+@app.route('/users', methods=['GET'])
 def get_users():
     users = User.query.all()
+    results = users_schema.dump(users)
     # Convert users to JSON or customize the response as needed
-    return jsonify(users)
+    return jsonify(results)
+
+@app.route('/create_user', methods=['POST'])
+def create_user():
+    users = User.query.all()
+    results = users_schema.dump(users)
+    # Convert users to JSON or customize the response as needed
+    return jsonify(results)
 
 @app.route('/api/orders', methods=['POST'])
 def create_order():
