@@ -32,6 +32,7 @@ _All these helps connect the postgres database to a Flask application_
 
 #### Table
 
+```
 viewtouchDB=# select \* from users;
 id | username | password | category
 ----+-------------------+--------------+----------
@@ -50,5 +51,6 @@ id | username | password | category
 (12 rows)
 
 viewtouchDB=#
+```
 
-- on your browser enter 127.0.0.1:5000 or localhost:5000, the webpage should list out all the descriptions from the database with check boxes presceding each of the descriptions
+- on your browser enter 127.0.0.1:5000 or localhost:5000, the webpage should show all the list of users in this page
