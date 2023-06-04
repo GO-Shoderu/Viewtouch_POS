@@ -31,7 +31,9 @@ const App: React.FC = () => {
         <LoginPage onLogin={handleLogin} />
       ) : (
         <div>
-          {category === "customer" && <CustomerHomePage userId={userId} />}
+          {category === "customer" && (
+            <CustomerHomePage userId={userId} onLogout={handleLogout} />
+          )}
           {category === "manager" && (
             <ManagerHomePage userId={userId} onLogout={handleLogout} />
           )}

@@ -84,7 +84,7 @@ def create_user():
     # Return the user ID in the response
     return jsonify(message='User credentials sent to user')
 
-@app.route('/api/orders', methods=['POST'])
+@app.route('/booking', methods=['POST'])
 def create_order():
     # Handle creating a new order based on the request data
     # You can access the request data using request.json

@@ -1,0 +1,54 @@
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+.logout-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.customer-homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.form-section {
+  margin: 20px;
+}
+
+.select-field,
+.input-field {
+  margin-bottom: 10px;
+}
+
+.form-button {
+  margin-top: 10px;
+}
+
+.logout-container {
+  margin-top: 20px;
+}
+
+.logout-button {
+  padding: 10px 20px;
+}
