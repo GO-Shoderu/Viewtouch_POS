@@ -38,8 +38,8 @@ id | username | password | category
 ----+-------------------+--------------+----------
 1 | gosh@gmail.com | password | manager
 2 | cust@gmail.com | password_2 | customer
-4 | cust_2@gmail.com | password_3 |
-5 | cust_3@gmail.com | password_4 |
+4 | cust_2@gmail.com | password_3 | waiter
+5 | cust_3@gmail.com | password_4 | customer
 6 | cust_5@gmail.com | password_3 | waiter
 7 | cust_6@gmail.com | password_6 | waiter
 9 | mike@gmail.com | mikepassword | cashier
