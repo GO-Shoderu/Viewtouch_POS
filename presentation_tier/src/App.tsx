@@ -19,6 +19,12 @@ const App: React.FC = () => {
     setUserId(userId);
   };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setCategory("");
+    setUserId(0);
+  };
+
   return (
     <div>
       {!isLoggedIn ? (
@@ -26,7 +32,9 @@ const App: React.FC = () => {
       ) : (
         <div>
           {category === "customer" && <CustomerHomePage userId={userId} />}
-          {category === "manager" && <ManagerHomePage userId={userId} />}
+          {category === "manager" && (
+            <ManagerHomePage userId={userId} onLogout={handleLogout} />
+          )}
           {category === "waiter" && <WaiterHomePage userId={userId} />}
         </div>
       )}

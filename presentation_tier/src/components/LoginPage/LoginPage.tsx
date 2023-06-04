@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./LoginPage.css";
 
 interface LoginPageProps {
   onLogin: (isLoggedIn: boolean, category: string, userId: number) => void;
@@ -34,22 +35,26 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleLogin}>
+    <div className="login-page">
+      <h1>ViewTouch Login Page</h1>
+      <form className="form-container" onSubmit={handleLogin}>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
+          className="input-field"
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          className="input-field"
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
     </div>
   );

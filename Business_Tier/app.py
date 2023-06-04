@@ -54,19 +54,35 @@ def login():
     return jsonify(response)
 
 # API routes and logic
-@app.route('/users', methods=['GET'])
+@app.route('/admin_users', methods=['GET'])
 def get_users():
-    users = User.query.all()
+    users = User.query.filter(User.category.in_(["manager", "cashier", "waiter"])).all()
     results = users_schema.dump(users)
+
+    print(results)
     # Convert users to JSON or customize the response as needed
     return jsonify(results)
 
 @app.route('/create_user', methods=['POST'])
 def create_user():
-    users = User.query.all()
-    results = users_schema.dump(users)
-    # Convert users to JSON or customize the response as needed
-    return jsonify(results)
+    data = request.json
+
+    # Extract the necessary information from the request body
+    name = request.json.get('name')
+    password = request.json.get('password')
+    category = request.json.get('category')
+
+    # Create a new User instance
+    new_user = User(username=name, password=password, category=category)
+
+    # Add the new user to the session
+    db.session.add(new_user)
+
+    # Commit the changes to the database
+    db.session.commit()
+
+    # Return the user ID in the response
+    return jsonify(message='User credentials sent to user')
 
 @app.route('/api/orders', methods=['POST'])
 def create_order():
